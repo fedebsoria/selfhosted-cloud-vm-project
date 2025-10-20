@@ -6,7 +6,6 @@ Este documento detalla la arquitectura, la asignación de servicios y las consid
 
 Este diagrama muestra la disposición de los servicios y el flujo de tráfico. Los puertos específicos y los nombres de herramientas de gestión de alto valor han sido generalizados para evitar su exposición en un portfolio público.
 
-```mermaid
 graph TD
     %% SUBGRAFOS: Representan ubicaciones físicas o lógicas.
 
