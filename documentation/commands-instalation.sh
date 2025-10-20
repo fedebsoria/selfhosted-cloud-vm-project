@@ -45,4 +45,14 @@ sudo docker run -d -p 8000:8000 -p 9000:9000 --name portainer --restart always \
   -v portainer_data:/data \
   portainer/portainer-ce:latest
 sudo docker ps # Verify Portainer is running
-# Access Portainer web interface at http://<server_ip>:9000ip a
+# Access Portainer web interface at http://<server_ip>:9000
+
+#6 install samba for file sharing
+sudo apt install samba -y
+sudo mkdir -p /srv/sambashare # Create shared directory
+sudo nano /etc/samba/smb.conf # Edit Samba configuration to add shared folder
+# change ownership and permissions
+sudo chown -R a-admin:staff /srv/sambashare #staff group already exists and will be used to give access to other users
+sudo chmod -R 750 /srv/sambashare # Set directory permissions
+# create samba user
+sudo smbpasswd -a a-admin # Set Samba password for user a-admin
