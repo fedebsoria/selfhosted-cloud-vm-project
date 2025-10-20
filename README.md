@@ -10,7 +10,7 @@ This repository documents the architecture and manual setup of a highly secure, 
 
 
 
-\## en Project Overview and Architecture
+## en Project Overview and Architecture
 
 
 
@@ -18,15 +18,15 @@ This project demonstrates proficiency in Linux system administration, network se
 
 
 
-\### Key Features
+### Key Features
 
 
 
-\* \*\*Low-Cost Storage:\*\* Utilization of an 8TB External HDD (simulated via VM disk mount) for high-capacity media storage.
+* \*\*Low-Cost Storage:\*\* Utilization of an 8TB External HDD (simulated via VM disk mount) for high-capacity media storage.
 
-\* \*\*Zero Trust Access:\*\* \*\*Only Nextcloud\*\* is exposed to the public internet using a \*\*Cloudflare Tunnel\*\*, avoiding port forwarding and mitigating CGNAT issues.
+* \*\*Zero Trust Access:\*\* \*\*Only Nextcloud\*\* is exposed to the public internet using a \*\*Cloudflare Tunnel\*\*, avoiding port forwarding and mitigating CGNAT issues.
 
-\* \*\*Manual Setup:\*\* Nextcloud is installed manually on the Host OS for granular control and database practice.
+* \*\*Manual Setup:\*\* Nextcloud is installed manually on the Host OS for granular control and database practice.
 
 \* \*\*Local Management:\*\* High-value services like Cockpit and Portainer are accessed locally or via \*\*ZeroTier VPN\*\*.
 
