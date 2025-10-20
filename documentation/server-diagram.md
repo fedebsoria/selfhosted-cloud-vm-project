@@ -48,22 +48,33 @@ graph TD
     
     %% TRAFFIC FLOWS AND CONNECTIONS (Arrows)
 
-    C --> Host %% Local and Internet traffic entering the server
+    %% Local and Internet traffic entering the server
+    C --> Host
     
-    Host -- Tunnel (HTTPS) --> NC_Web %% Cloudflare Tunnel connects to Nginx, which serves Nextcloud
-    NC_Web --> DB %% Nextcloud connects internally to its database
+    %% Cloudflare Tunnel connects to Nginx, which serves Nextcloud
+    Host -- Tunnel (HTTPS) --> NC_Web
+    %% Nextcloud connects internally to its database
+    NC_Web --> DB
     
     %% DIRECT LOCAL ACCESS VIA IP:PORT (Generalized/hidden ports)
-    D -- App Port 1 --> G %% Access to Local Homepage (Homer)
-    D -- Mgmt Port 1 --> J %% Access to Container Manager (Portainer)
-    D -- Mgmt Port 2 --> P %% Access to Host Web Manager (Cockpit)
-    D -- SMB Access --> M %% Access to network shared folders
-    D -- DNS (53) --> L %% Device uses Unbound as DNS server
+    %% Access to Local Homepage (Homer)
+    D -- App Port 1 --> G
+    %% Access to Container Manager (Portainer)
+    D -- Mgmt Port 1 --> J
+    %% Access to Host Web Manager (Cockpit)
+    D -- Mgmt Port 2 --> P
+    %% Access to network shared folders
+    D -- SMB Access --> M
+    %% Device uses Unbound as DNS server
+    D -- DNS (53) --> L
 
     %% REMOTE ACCESS VIA ZEROTIER
-    K -- VPN Access --> P %% Access to Host Web Manager via ZeroTier
-    K -- VPN Access --> G %% Access to Media Streaming App via ZeroTier
-    K -- VPN Access --> M %% Access to Shared Files via ZeroTier
+    %% Access to Host Web Manager via ZeroTier
+    K -- VPN Access --> P
+    %% Access to Media Streaming App via ZeroTier
+    K -- VPN Access --> G
+    %% Access to Shared Files via ZeroTier
+    K -- VPN Access --> M
     
     subgraph "Storage"
         %% The large-capacity disk
@@ -71,8 +82,10 @@ graph TD
     end
     
     %% STORAGE DEPENDENCIES
-    NC_Web -- Mounts/Writes --> N %% Nextcloud stores and writes files to the disk
-    M -- Shares --> N %% File Sharing Protocol shares the disk's folders
+    %% Nextcloud stores and writes files to the disk
+    NC_Web -- Mounts/Writes --> N
+    %% File Sharing Protocol shares the disk's folders
+    M -- Shares --> N
     
     %% STYLES FOR VISUAL CLARITY
     style B fill:#3082e6,stroke:#333
