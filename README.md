@@ -19,7 +19,7 @@ This project demonstrates proficiency in Linux system administration, network se
 
 The full traffic flow and component organization is visualized in the dedicated diagram file (Mermaid syntax).
 
-➡️ **[View Detailed Architectural Diagram](architecture-diagram.md)** ⬅️
+➡️ **[View Detailed Architectural Diagram](documentation/server-diagram.md)** ⬅️
 
 ### Port Assignment and Access Table (English)
 
@@ -50,7 +50,7 @@ Este repositorio documenta la arquitectura y configuración manual de un entorno
 
 El flujo de tráfico completo y la organización de los componentes se visualiza en el archivo de diagrama dedicado (sintaxis Mermaid).
 
-➡️ **[Ver Diagrama Arquitectónico Detallado](architecture-diagram.md)** ⬅️
+➡️ **[Ver Diagrama Arquitectónico Detallado](documentation/server-diagra-SP.md)** ⬅️
 
 ### Tabla de Asignación de Puertos y Accesos (Español)
 
