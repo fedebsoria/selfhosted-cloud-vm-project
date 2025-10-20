@@ -6,31 +6,44 @@ This document details the architecture, service allocation, and security conside
 
 This diagram shows the service layout and traffic flow. Specific ports and the names of high-value management tools have been generalized to avoid their exposure in a public portfolio.
 
+```mermaid
 graph TD
     %% SUBGRAPHS: Represent physical or logical locations.
-
-    subgraph External Access (Nextcloud)
-        A[Remote Device] %% User device outside the local network
-        B(Cloudflare Zero Trust Proxy) %% The Cloudflare network edge (access point)
-        A --> B %% User accesses the domain on Cloudflare
-        B --> Host %% Cloudflare forwards the request via the Tunnel to the Host server
+    subgraph "External Access - Nextcloud"
+        %% User device outside the local network
+        A[Remote Device]
+        %% The Cloudflare network edge (access point)
+        B(Cloudflare Zero Trust Proxy)
+        A --> B
+        B --> Host
     end
     
-    subgraph Home Network 🏠
-        C[ISP Router/Modem] %% Router providing Internet and local network access
-        D[Local Device] %% User device inside the local network (PC, mobile, TV)
+    subgraph "Home Network"
+        %% Router providing Internet and local network access
+        C[ISP Router/Modem]
+        %% User device inside the local network (PC, mobile, TV)
+        D[Local Device]
     end
     
-    subgraph Server (Ubuntu Server @ M.2) 💻 %% The physical machine
-        Host{Operating System / Docker Host} %% Ubuntu Server, where everything runs
-        DB[Database (MariaDB/PostgreSQL)] %% Database for Nextcloud (internal access only)
-        NC_Web[Web Server (Nginx + PHP-FPM) - Nextcloud] %% Manual Nextcloud installation
-        G[Local Homepage] %% Docker container for the dashboard (Homer)
-        J[Container Manager (GUI)] %% Docker management tool (Portainer)
-        K[VPN Client (ZeroTier)] %% VPN client for alternative secure remote access
-        L[DNS Resolver] %% DNS service for privacy (Unbound)
-        M[File Sharing Protocol (SMB)] %% Host service for file sharing (Samba)
-        P[Host Web Manager (SystemD)] %% Web interface for OS management (Cockpit)
+    subgraph "Server (Ubuntu Server @ M.2)"
+        %% Ubuntu Server, where everything runs
+        Host{Operating System / Docker Host}
+        %% Database for Nextcloud (internal access only)
+        DB[Database (MariaDB/PostgreSQL)]
+        %% Manual Nextcloud installation
+        NC_Web[Web Server (Nginx + PHP-FPM) - Nextcloud]
+        %% Docker container for the dashboard (Homer)
+        G[Local Homepage]
+        %% Docker management tool (Portainer)
+        J[Container Manager (GUI)]
+        %% VPN client for alternative secure remote access
+        K[VPN Client (ZeroTier)]
+        %% DNS service for privacy (Unbound)
+        L[DNS Resolver]
+        %% Host service for file sharing (Samba)
+        M[File Sharing Protocol (SMB)]
+        %% Web interface for OS management (Cockpit)
+        P[Host Web Manager (SystemD)]
     end
     
     %% TRAFFIC FLOWS AND CONNECTIONS (Arrows)
@@ -52,8 +65,9 @@ graph TD
     K -- VPN Access --> G %% Access to Media Streaming App via ZeroTier
     K -- VPN Access --> M %% Access to Shared Files via ZeroTier
     
-    subgraph Storage 💾 %% The large-capacity disk
-        N(8TB External HDD) %% External Hard Drive
+    subgraph "Storage"
+        %% The large-capacity disk
+        N(8TB External HDD)
     end
     
     %% STORAGE DEPENDENCIES
@@ -69,3 +83,4 @@ graph TD
     style P fill:#ccf,stroke:#333
     style NC_Web fill:#a6e22e,stroke:#333
     style DB fill:#f08080,stroke:#333
+```
