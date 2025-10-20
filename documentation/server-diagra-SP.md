@@ -6,61 +6,88 @@ Este documento detalla la arquitectura, la asignación de servicios y las consid
 
 Este diagrama muestra la disposición de los servicios y el flujo de tráfico. Los puertos específicos y los nombres de herramientas de gestión de alto valor han sido generalizados para evitar su exposición en un portfolio público.
 
+```mermaid
 graph TD
-    %% SUBGRAFOS: Representan ubicaciones físicas o lógicas.
+    %% SUBGRAPHS: Represent physical or logical locations.
+    subgraph "External Access - Nextcloud"
+        %% User device outside the local network
+        A[Remote Device]
+        %% The Cloudflare network edge (access point)
+        B(Cloudflare Zero Trust Proxy)
+        A --> B
+        B --> Host
+    end
+    
+    subgraph "Home Network"
+        %% Router providing Internet and local network access
+        C[ISP Router/Modem]
+        %% User device inside the local network (PC, mobile, TV)
+        D[Local Device]
+    end
+    
+    subgraph "Server (Ubuntu Server @ M.2)"
+    %% Ubuntu Server, where everything runs
+    Host{"Operating System / Docker Host"}
+    %% Database for Nextcloud (internal access only)
+    DB["Database (MariaDB/PostgreSQL)"]
+    %% Manual Nextcloud installation
+    NC_Web["Web Server (Nginx + PHP-FPM) - Nextcloud"]
+    %% Docker container for the dashboard (Homer)
+    G["Local Homepage"]
+    %% Docker management tool (Portainer)
+    J["Container Manager (GUI)"]
+    %% VPN client for alternative secure remote access
+    K["VPN Client (ZeroTier)"]
+        %% DNS service for privacy (Unbound)
+        L[DNS Resolver]
+    %% Host service for file sharing (Samba)
+    M["File Sharing Protocol (SMB)"]
+    %% Web interface for OS management (Cockpit)
+    P["Host Web Manager (SystemD)"]
+    end
+    
+    %% TRAFFIC FLOWS AND CONNECTIONS (Arrows)
 
-    subgraph Acceso Externo (Nextcloud)
-        A[Dispositivo Remoto] %% Dispositivo del usuario fuera de la red local
-        B(Proxy Cloudflare Zero Trust) %% El borde de la red de Cloudflare (punto de acceso)
-        A --> B %% El usuario accede al dominio en Cloudflare
-        B --> Host %% Cloudflare reenvía la petición a través del Túnel al servidor Host
-    end
+    %% Local and Internet traffic entering the server
+    C --> Host
     
-    subgraph Red Doméstica 🏠
-        C[Router/Módem ISP] %% Router que provee acceso a Internet y red local
-        D[Dispositivo Local] %% Dispositivo del usuario dentro de la red local (PC, móvil, TV)
-    end
+    %% Cloudflare Tunnel connects to Nginx, which serves Nextcloud
+    Host -- Tunnel (HTTPS) --> NC_Web
+    %% Nextcloud connects internally to its database
+    NC_Web --> DB
     
-    subgraph Servidor (Ubuntu Server @ M.2) 💻 %% La máquina física
-        Host{Sistema Operativo / Docker Host} %% Ubuntu Server, donde todo corre
-        DB[Base de Datos (MariaDB/PostgreSQL)] %% Base de datos para Nextcloud (solo acceso interno)
-        NC_Web[Servidor Web (Nginx + PHP-FPM) - Nextcloud] %% Instalación manual de Nextcloud
-        G[Página de Inicio Local] %% Contenedor Docker para el dashboard (Homer)
-        J[Gestor de Contenedores (GUI)] %% Herramienta de gestión de Docker (Portainer)
-        K[Cliente VPN (ZeroTier)] %% Cliente VPN para acceso remoto alternativo seguro
-        L[Resolvedor DNS] %% Servicio DNS para privacidad (Unbound)
-        M[Protocolo de Archivos Compartidos (SMB)] %% Servicio del Host para compartir archivos (Samba)
-        P[Gestor Web del Host (SystemD)] %% Interfaz web para gestión del SO (Cockpit)
-    end
-    
-    %% FLUJOS DE TRÁFICO Y CONEXIONES (Flechas)
+    %% DIRECT LOCAL ACCESS VIA IP:PORT (Generalized/hidden ports)
+    %% Access to Local Homepage (Homer)
+    D -- App Port 1 --> G
+    %% Access to Container Manager (Portainer)
+    D -- Mgmt Port 1 --> J
+    %% Access to Host Web Manager (Cockpit)
+    D -- Mgmt Port 2 --> P
+    %% Access to network shared folders
+    D -- SMB Access --> M
+    %% Device uses Unbound as DNS server
+    D -- DNS (53) --> L
 
-    C --> Host %% Tráfico local e Internet entrando al servidor
+    %% REMOTE ACCESS VIA ZEROTIER
+    %% Access to Host Web Manager via ZeroTier
+    K -- VPN Access --> P
+    %% Access to Media Streaming App via ZeroTier
+    K -- VPN Access --> G
+    %% Access to Shared Files via ZeroTier
+    K -- VPN Access --> M
     
-    Host -- Túnel (HTTPS) --> NC_Web %% Cloudflare Tunnel conecta a Nginx, el cual sirve Nextcloud
-    NC_Web --> DB %% Nextcloud se conecta internamente a su base de datos
-    
-    %% ACCESOS LOCALES DIRECTOS POR IP:PUERTO (Puertos generalizados/ocultos)
-    D -- Puerto App 1 --> G %% Acceso a Página de Inicio Local (Homer)
-    D -- Puerto Gestión 1 --> J %% Acceso a Gestor de Contenedores (Portainer)
-    D -- Puerto Gestión 2 --> P %% Acceso a Gestor Web del Host (Cockpit)
-    D -- Acceso SMB --> M %% Acceso a carpetas compartidas por red
-    D -- DNS (53) --> L %% Dispositivo usa Unbound como servidor DNS
-
-    %% ACCESOS REMOTOS VÍA ZEROTIER
-    K -- Acceso VPN --> P %% Acceso a Gestor Web del Host vía ZeroTier
-    K -- Acceso VPN --> G %% Acceso a App de Streaming Multimedia vía ZeroTier
-    K -- Acceso SMB --> M %% Acceso a Archivos Compartidos vía ZeroTier
-    
-    subgraph Almacenamiento 💾 %% El disco de gran capacidad
-        N(HDD Externo de 8TB) %% Disco Duro Externo
+    subgraph "Storage"
+        %% The large-capacity disk
+        N("8TB External HDD")
     end
     
-    %% DEPENDENCIAS DE ALMACENAMIENTO
-    NC_Web -- Monta/Escribe --> N %% Nextcloud almacena y escribe archivos en el disco
-    M -- Comparte --> N %% Protocolo de Archivos Compartidos comparte las carpetas del disco
+    %% STORAGE DEPENDENCIES
+    %% Nextcloud stores and writes files to the disk
+    NC_Web -- Mounts/Writes --> N
+    %% File Sharing Protocol shares the disk's folders
+    M -- Shares --> N
     
-    %% ESTILOS PARA CLARIDAD VISUAL
+    %% STYLES FOR VISUAL CLARITY
     style B fill:#3082e6,stroke:#333
     style Host fill:#f9f,stroke:#333,stroke-width:2px
     style K fill:#ffc,stroke:#333
@@ -69,3 +96,4 @@ graph TD
     style P fill:#ccf,stroke:#333
     style NC_Web fill:#a6e22e,stroke:#333
     style DB fill:#f08080,stroke:#333
+```
