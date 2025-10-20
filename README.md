@@ -32,7 +32,7 @@ This project demonstrates proficiency in Linux system administration, network se
 
 
 
-\### Architectural Diagram
+### Architectural Diagram
 
 
 
@@ -44,7 +44,7 @@ The full traffic flow and component organization is visualized in the dedicated 
 
 
 
-\### Port Assignment and Access Table (English)
+### Port Assignment and Access Table (English)
 
 
 
@@ -72,7 +72,7 @@ This table shows the logical port mapping for the final architecture.
 
 
 
-\## 🇪🇸 Resumen del Proyecto y Arquitectura
+## 🇪🇸 Resumen del Proyecto y Arquitectura
 
 
 
@@ -80,21 +80,21 @@ Este repositorio documenta la arquitectura y configuración manual de un entorno
 
 
 
-\### Características Clave
+### Características Clave
 
 
 
-\* \*\*Almacenamiento de Bajo Costo:\*\* Utilización de un HDD Externo de 8TB (simulado mediante montaje de disco de MV) para almacenamiento multimedia de alta capacidad.
+* \*\*Almacenamiento de Bajo Costo:\*\* Utilización de un HDD Externo de 8TB (simulado mediante montaje de disco de MV) para almacenamiento multimedia de alta capacidad.
 
-\* \*\*Acceso Zero Trust:\*\* \*\*Solo Nextcloud\*\* está expuesto a Internet público usando un \*\*Túnel de Cloudflare\*\*, evitando la apertura de puertos y mitigando problemas de CGNAT.
+* \*\*Acceso Zero Trust:\*\* \*\*Solo Nextcloud\*\* está expuesto a Internet público usando un \*\*Túnel de Cloudflare\*\*, evitando la apertura de puertos y mitigando problemas de CGNAT.
 
-\* \*\*Configuración Manual:\*\* Nextcloud está instalado manualmente en el SO Host para un control granular y práctica de bases de datos.
+* \*\*Configuración Manual:\*\* Nextcloud está instalado manualmente en el SO Host para un control granular y práctica de bases de datos.
 
-\* \*\*Gestión Local:\*\* Los servicios de alto valor como Cockpit y Portainer son accesibles localmente o vía \*\*VPN ZeroTier\*\*.
+* \*\*Gestión Local:\*\* Los servicios de alto valor como Cockpit y Portainer son accesibles localmente o vía \*\*VPN ZeroTier\*\*.
 
 
 
-\### Diagrama Arquitectónico
+### Diagrama Arquitectónico
 
 
 
@@ -106,7 +106,7 @@ El flujo de tráfico completo y la organización de los componentes se visualiza
 
 
 
-\### Tabla de Asignación de Puertos y Accesos (Español)
+### Tabla de Asignación de Puertos y Accesos (Español)
 
 
 
@@ -134,7 +134,7 @@ Esta tabla muestra la asignación lógica de puertos para la arquitectura final.
 
 
 
-\## 💾 VM Appliance Download / Descarga del Appliance de la MV
+## 💾 VM Appliance Download / Descarga del Appliance de la MV
 
 
 
