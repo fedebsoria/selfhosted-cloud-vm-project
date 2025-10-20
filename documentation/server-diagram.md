@@ -26,24 +26,24 @@ graph TD
     end
     
     subgraph "Server (Ubuntu Server @ M.2)"
-        %% Ubuntu Server, where everything runs
-        Host{Operating System / Docker Host}
-        %% Database for Nextcloud (internal access only)
-        DB[Database (MariaDB/PostgreSQL)]
-        %% Manual Nextcloud installation
-        NC_Web[Web Server (Nginx + PHP-FPM) - Nextcloud]
-        %% Docker container for the dashboard (Homer)
-        G[Local Homepage]
-        %% Docker management tool (Portainer)
-        J[Container Manager (GUI)]
-        %% VPN client for alternative secure remote access
-        K[VPN Client (ZeroTier)]
+    %% Ubuntu Server, where everything runs
+    Host{"Operating System / Docker Host"}
+    %% Database for Nextcloud (internal access only)
+    DB["Database (MariaDB/PostgreSQL)"]
+    %% Manual Nextcloud installation
+    NC_Web["Web Server (Nginx + PHP-FPM) - Nextcloud"]
+    %% Docker container for the dashboard (Homer)
+    G["Local Homepage"]
+    %% Docker management tool (Portainer)
+    J["Container Manager (GUI)"]
+    %% VPN client for alternative secure remote access
+    K["VPN Client (ZeroTier)"]
         %% DNS service for privacy (Unbound)
         L[DNS Resolver]
-        %% Host service for file sharing (Samba)
-        M[File Sharing Protocol (SMB)]
-        %% Web interface for OS management (Cockpit)
-        P[Host Web Manager (SystemD)]
+    %% Host service for file sharing (Samba)
+    M["File Sharing Protocol (SMB)"]
+    %% Web interface for OS management (Cockpit)
+    P["Host Web Manager (SystemD)"]
     end
     
     %% TRAFFIC FLOWS AND CONNECTIONS (Arrows)
@@ -67,7 +67,7 @@ graph TD
     
     subgraph "Storage"
         %% The large-capacity disk
-        N(8TB External HDD)
+        N("8TB External HDD")
     end
     
     %% STORAGE DEPENDENCIES
