@@ -1,4 +1,4 @@
-\# 💻 Selfhosted Cloud Server Architecture Project: Nextcloud, Media, and Zero Trust VPN
+# 💻 Selfhosted Cloud Server Architecture Project: Nextcloud, Media, and Zero Trust VPN
 
 
 
@@ -147,4 +147,3 @@ El \*appliance\* completo de VirtualBox (`.ova`) está alojado en Google Drive. 
 
 
 ➡️ \*\*VM Appliance Download Link / Enlace de Descarga del Appliance:\*\* \*\*\[ENLACE DE DRIVE A COMPLETAR POR EL USUARIO]\*\*
-
