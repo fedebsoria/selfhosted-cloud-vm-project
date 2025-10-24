@@ -27,7 +27,7 @@ This table shows the logical port mapping for the final architecture.
 
 | Service Name (Actual) | Generic Component | Access Port (Local) | External Access Method | Notes |
 | :--- | :--- | :---: | :--- | :--- |
-| **Nextcloud** | Web Server (Docker) | 11000 | **Cloudflare Tunnel** (`nextcloud.domain.cc`) | Primary service. Exposed via HTTPS Tunnel only. |
+| **Nextcloud** | Web Server (Docker) | 8080 | **Cloudflare Tunnel** (`nextcloud.domain.cc`) | Primary service. Exposed via HTTPS Tunnel only. |
 | **Cockpit** | Web Host Manager | 9090 | N/A | Host management. Access via **Local IP:Port** or **ZeroTier**. |
 | **Portainer** | Container Manager | 9000 | N/A | Docker/Container management GUI. |
 | **Samba** | File Sharing Protocol | 445 (SMB) | N/A | File access via network sharing (`\\IP_ADDRESS`). |
@@ -58,7 +58,7 @@ Esta tabla muestra la asignación lógica de puertos para la arquitectura final.
 
 | Nombre del Servicio (Real) | Componente Genérico | Puerto de Acceso (Local) | Método de Acceso Externo | Notas |
 | :--- | :--- | :---: | :--- | :--- |
-| **Nextcloud** | Servidor Web (Docker) | 11000 | **Túnel de Cloudflare** (`nextcloud.dominio.cc`) | Servicio principal. Expuesto solo por el Túnel HTTPS. |
+| **Nextcloud** | Servidor Web (Docker) | 8080 | **Túnel de Cloudflare** (`nextcloud.dominio.cc`) | Servicio principal. Expuesto solo por el Túnel HTTPS. |
 | **Cockpit** | Gestor Web del Host | 9090 | N/A | Gestión del Host. Acceso vía **IP Local:Puerto** o **ZeroTier**. |
 | **Portainer** | Gestor de Contenedores | 9000 | N/A | Interfaz gráfica para gestión de Docker/Contenedores. |
 | **Samba** | Protocolo de Archivos | 445 (SMB) | N/A | Acceso a archivos mediante recurso compartido de red (`\\DIRECCIÓN_IP`). |
