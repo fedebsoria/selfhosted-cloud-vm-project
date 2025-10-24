@@ -149,9 +149,9 @@ For this example, we will use Cloudflare's free tier for DNS management and SSL 
 
 Prerequisites:
 
-A Cloudflare account with Zero Trust configured.
-A domain managed through Cloudflare.
-The cloudflared-linux-amd64.deb package downloaded from your Cloudflare Zero Trust dashboard (assumed to be in /srv/sambashare/ for this guide).
+ ➡️A Cloudflare account with Zero Trust configured.
+ ➡️A domain managed through Cloudflare.
+ ➡️The cloudflared-linux-amd64.deb package downloaded from your Cloudflare Zero Trust dashboard (assumed to be in /srv/sambashare/ for this guide).
 
 # 8.1 Create a Tunnel in Cloudflare Zero Trust to expose Nextcloud securely
 Follow the instructions at https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/installers/tunnel-guide/ .
