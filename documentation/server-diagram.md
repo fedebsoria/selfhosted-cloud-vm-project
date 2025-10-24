@@ -88,12 +88,12 @@ graph TD
     M -- Shares --> N
     
     %% STYLES FOR VISUAL CLARITY
-    style B fill:#3082e6,stroke:#333
-    style Host fill:#f9f,stroke:#333,stroke-width:2px
-    style K fill:#ffc,stroke:#333
-    style L fill:#cff,stroke:#333
-    style M fill:#ffa,stroke:#333
-    style P fill:#ccf,stroke:#333
-    style NC_Web fill:#a6e22e,stroke:#333
-    style DB fill:#f08080,stroke:#333
+    style B fill:#3082e6,stroke:#333,color:#000,font-weight:bold
+    style Host fill:#f9f,stroke:#333,stroke-width:2px,color:#000,font-weight:bold
+    style K fill:#ffc,stroke:#333,color:#000,font-weight:bold
+    style L fill:#cff,stroke:#333,color:#000,font-weight:bold
+    style M fill:#ffa,stroke:#333,color:#000,font-weight:bold
+    style P fill:#ccf,stroke:#333,color:#000,font-weight:bold
+    style NC_Web fill:#a6e22e,stroke:#333,color:#000,font-weight:bold
+    style DB fill:#f08080,stroke:#333,color:#000,font-weight:bold
 ```
