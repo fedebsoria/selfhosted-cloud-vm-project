@@ -65,11 +65,3 @@ Esta tabla muestra la asignación lógica de puertos para la arquitectura final.
 | **Unbound** | Resolvedor DNS | 53 (UDP/TCP) | N/A | Uso interno para privacidad DNS y resolución recursiva. |
 
 ---
-
-## 💾 VM Appliance Download / Descarga del Appliance de la MV
-
-The complete VirtualBox appliance (`.ova` file) is hosted on Google Drive. You can download and import the VM to test the environment.
-
-El *appliance* completo de VirtualBox (`.ova`) está alojado en Google Drive. Puedes descargar e importar la MV para probar el entorno.
-
-➡️ **VM Appliance Download Link / Enlace de Descarga del Appliance:** **[ENLACE DE DRIVE A COMPLETAR POR EL USUARIO]**
